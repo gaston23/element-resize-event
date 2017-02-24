@@ -50,7 +50,8 @@ var exports = function exports(element, fn) {
     this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__
     this.contentDocument.defaultView.addEventListener('resize', resizeListener)
   }
-
+  
+  if (!element){ return; }
   if (!element.__resizeListeners__) {
     element.__resizeListeners__ = []
     if (attachEvent) {
@@ -80,6 +81,7 @@ var exports = function exports(element, fn) {
 
 exports.unbind = function(element, fn){
   var attachEvent = document.attachEvent;
+  if (!element){ return; }
   element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(fn), 1);
   if (!element.__resizeListeners__.length) {
     if (attachEvent) {
